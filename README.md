@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Dayflow - Human Resource Management System
 
 A multi-tenant HRMS built with PHP backend and vanilla JavaScript frontend. Supports multiple companies with complete employee management, attendance tracking, leave management, payroll processing, and report generation.
@@ -282,3 +283,6 @@ MIT License - see [LICENSE](LICENSE) file for details.
 ---
 
 Made with ❤️ by Dayflow Team
+=======
+# dayflow
+>>>>>>> 2d1b96ab6503a94baf517943fa220d7657769ba3
