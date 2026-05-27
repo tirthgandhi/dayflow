@@ -1,0 +1,34 @@
+{
+    "name": "hrms/multi-company-hrms",
+    "description": "Multi-Company Human Resource Management System",
+    "type": "project",
+    "require": {
+        "php": ">=7.4",
+        "ext-pdo": "*",
+        "ext-json": "*"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^9.5",
+        "giorgiosironi/eris": "^1.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "HRMS\\": "src/",
+            "HRMS\\Core\\": "src/Core/",
+            "HRMS\\Controllers\\": "src/Controllers/",
+            "HRMS\\Services\\": "src/Services/",
+            "HRMS\\Repositories\\": "src/Repositories/",
+            "HRMS\\Middleware\\": "src/Middleware/",
+            "HRMS\\Exceptions\\": "src/Exceptions/",
+            "HRMS\\Helpers\\": "src/Helpers/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "HRMS\\Tests\\": "tests/"
+        }
+    },
+    "scripts": {
+        "test": "phpunit"
+    }
+}

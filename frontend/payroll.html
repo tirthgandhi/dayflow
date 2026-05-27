@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Payroll - HRMS</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/variables.css">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/layout.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/utilities.css">
+  <link rel="stylesheet" href="css/animations.css">
+</head>
+<body>
+  <div class="app">
+    <div id="sidebar-container"></div>
+    
+    <div class="main-wrapper">
+      <div id="header-container"></div>
+      
+      <main class="main-content">
+        <!-- Summary Cards -->
+        <div class="content-grid mb-lg" id="summary-cards">
+          <div class="kpi-card">
+            <div class="kpi-header">
+              <span class="kpi-title">Total Gross</span>
+              <div class="kpi-icon primary">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <text x="6" y="18" font-size="16" font-weight="bold" fill="currentColor" stroke="none">₹</text>
+                </svg>
+              </div>
+            </div>
+            <div class="kpi-value" id="total-gross">₹0</div>
+          </div>
+          <div class="kpi-card">
+            <div class="kpi-header">
+              <span class="kpi-title">Total Deductions</span>
+              <div class="kpi-icon error">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <line x1="5" x2="19" y1="12" y2="12"></line>
+                </svg>
+              </div>
+            </div>
+            <div class="kpi-value" id="total-deductions">₹0</div>
+          </div>
+          <div class="kpi-card">
+            <div class="kpi-header">
+              <span class="kpi-title">Total Net</span>
+              <div class="kpi-icon success">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <polyline points="20 6 9 17 4 12"></polyline>
+                </svg>
+              </div>
+            </div>
+            <div class="kpi-value" id="total-net">₹0</div>
+          </div>
+          <div class="kpi-card">
+            <div class="kpi-header">
+              <span class="kpi-title">Records</span>
+              <div class="kpi-icon secondary">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path>
+                  <circle cx="9" cy="7" r="4"></circle>
+                </svg>
+              </div>
+            </div>
+            <div class="kpi-value" id="total-records">0</div>
+          </div>
+        </div>
+
+        <!-- Payroll Table -->
+        <div class="table-container">
+          <div class="table-header">
+            <div class="flex items-center gap-md">
+              <div class="form-group m-0">
+                <input type="month" class="form-input" id="month-filter" style="width: auto;">
+              </div>
+              <select class="form-select" id="status-filter" style="width: auto;">
+                <option value="">All Status</option>
+                <option value="pending">Pending</option>
+                <option value="processed">Processed</option>
+                <option value="paid">Paid</option>
+              </select>
+            </div>
+            <div class="table-filters">
+              <button class="btn btn-outline" id="export-btn">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                  <polyline points="7 10 12 15 17 10"></polyline>
+                  <line x1="12" x2="12" y1="15" y2="3"></line>
+                </svg>
+                Export
+              </button>
+              <button class="btn btn-primary" id="process-btn">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M12 2v4"></path>
+                  <path d="m16.2 7.8 2.9-2.9"></path>
+                  <path d="M18 12h4"></path>
+                  <path d="m16.2 16.2 2.9 2.9"></path>
+                  <path d="M12 18v4"></path>
+                  <path d="m4.9 19.1 2.9-2.9"></path>
+                  <path d="M2 12h4"></path>
+                  <path d="m4.9 4.9 2.9 2.9"></path>
+                </svg>
+                Process Payroll
+              </button>
+            </div>
+          </div>
+          
+          <div class="table-wrapper">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>Employee</th>
+                  <th>Period</th>
+                  <th>Gross Salary</th>
+                  <th>Deductions</th>
+                  <th>Net Salary</th>
+                  <th>Status</th>
+                </tr>
+              </thead>
+              <tbody id="payroll-tbody">
+                <tr>
+                  <td colspan="6" class="text-center p-lg">
+                    <div class="spinner"></div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          
+          <div class="table-pagination">
+            <span class="pagination-info" id="pagination-info">Showing 0 of 0</span>
+            <div class="pagination-controls">
+              <button class="btn btn-outline btn-sm" id="prev-btn" disabled>Previous</button>
+              <button class="btn btn-outline btn-sm" id="next-btn" disabled>Next</button>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <!-- Process Payroll Modal -->
+  <div class="modal-overlay" id="process-modal">
+    <div class="modal">
+      <div class="modal-header">
+        <h3 class="modal-title">Process Payroll</h3>
+        <button class="modal-close" onclick="closeProcessModal()">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="18" y1="6" x2="6" y2="18"></line>
+            <line x1="6" y1="6" x2="18" y2="18"></line>
+          </svg>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p class="mb-md">Select the month to process payroll for all active employees with salary structures.</p>
+        <div class="form-group">
+          <label class="form-label" for="process-month">Month *</label>
+          <input type="month" class="form-input" id="process-month" required>
+        </div>
+        <div class="bg-page p-md rounded-md mt-md" id="process-preview" style="display: none;">
+          <p class="text-sm font-medium text-heading mb-sm">Preview</p>
+          <p class="text-sm text-muted" id="preview-text"></p>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-outline" onclick="closeProcessModal()">Cancel</button>
+        <button class="btn btn-primary" id="confirm-process-btn">Process Payroll</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="toast-container" class="toast-container"></div>
+
+  <script src="js/api.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/components/toast.js"></script>
+  <script src="js/components/sidebar.js"></script>
+  <script src="js/components/header.js"></script>
+  <script src="js/pages/payroll.js"></script>
+</body>
+</html>

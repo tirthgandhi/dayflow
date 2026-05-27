@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<files psalm-version="5.22.2@d768d914152dbbf3486c36398802f74e80cfde48">
+  <file src="examples/AssociativeArrayTest.php">
+    <UndefinedInterfaceMethod>
+      <code><![CDATA[$array]]></code>
+      <code><![CDATA[$array]]></code>
+    </UndefinedInterfaceMethod>
+  </file>
+  <file src="examples/NamesTest.php">
+    <ForbiddenCode>
+      <code><![CDATA[var_dump($name)]]></code>
+      <code><![CDATA[var_dump($sample->collected())]]></code>
+    </ForbiddenCode>
+  </file>
+  <file src="examples/ShrinkingTest.php">
+    <ForbiddenCode>
+      <code><![CDATA[var_dump($string)]]></code>
+    </ForbiddenCode>
+  </file>
+  <file src="examples/SubsetTest.php">
+    <ForbiddenCode>
+      <code><![CDATA[var_dump($set)]]></code>
+    </ForbiddenCode>
+  </file>
+  <file src="src/Generator.php">
+    <InvalidDocblock>
+      <code><![CDATA[public function __invoke($size, Random\RandomRange $rand);]]></code>
+      <code><![CDATA[public function shrink(GeneratedValue $element);]]></code>
+    </InvalidDocblock>
+  </file>
+  <file src="src/Generator/AssociativeArrayGenerator.php">
+    <InvalidArrayOffset>
+      <code><![CDATA[$associativeArray[$key]]]></code>
+    </InvalidArrayOffset>
+  </file>
+  <file src="src/Generator/DateGenerator.php">
+    <InvalidArgument>
+      <code><![CDATA[$halvedOffset]]></code>
+    </InvalidArgument>
+  </file>
+  <file src="src/Generator/GeneratedValueOptions.php">
+    <ParamNameMismatch>
+      <code><![CDATA[$callable]]></code>
+    </ParamNameMismatch>
+  </file>
+  <file src="src/Generator/GeneratedValueSingle.php">
+    <InvalidDocblock>
+      <code><![CDATA[public static function fromJustValue($value, $generatorName = null)]]></code>
+      <code><![CDATA[public static function fromValueAndInput($value, $input, $generatorName = null)]]></code>
+    </InvalidDocblock>
+    <InvalidReturnStatement>
+      <code><![CDATA[new ArrayIterator([
+            $this
+        ])]]></code>
+    </InvalidReturnStatement>
+    <InvalidReturnType>
+      <code><![CDATA[\Traversable]]></code>
+    </InvalidReturnType>
+  </file>
+  <file src="src/Generator/MapGenerator.php">
+    <ParamNameMismatch>
+      <code><![CDATA[$value]]></code>
+    </ParamNameMismatch>
+  </file>
+  <file src="src/Generator/NamesGenerator.php">
+    <ParamNameMismatch>
+      <code><![CDATA[$value]]></code>
+    </ParamNameMismatch>
+  </file>
+  <file src="src/Generator/RegexGenerator.php">
+    <ParamNameMismatch>
+      <code><![CDATA[$value]]></code>
+    </ParamNameMismatch>
+  </file>
+  <file src="src/Generator/SequenceGenerator.php">
+    <InvalidMethodCall>
+      <code><![CDATA[unbox]]></code>
+    </InvalidMethodCall>
+    <ParamNameMismatch>
+      <code><![CDATA[$sequence]]></code>
+    </ParamNameMismatch>
+  </file>
+  <file src="src/Generator/SetGenerator.php">
+    <InvalidMethodCall>
+      <code><![CDATA[unbox]]></code>
+    </InvalidMethodCall>
+    <ParamNameMismatch>
+      <code><![CDATA[$set]]></code>
+    </ParamNameMismatch>
+  </file>
+  <file src="src/Generator/SubsetGenerator.php">
+    <InvalidArgument>
+      <code><![CDATA[$maximumSubsetIndex]]></code>
+    </InvalidArgument>
+    <ParamNameMismatch>
+      <code><![CDATA[$set]]></code>
+    </ParamNameMismatch>
+  </file>
+  <file src="src/Generator/SuchThatGenerator.php">
+    <ParamNameMismatch>
+      <code><![CDATA[$value]]></code>
+    </ParamNameMismatch>
+  </file>
+  <file src="src/Generator/TupleGenerator.php">
+    <ParamNameMismatch>
+      <code><![CDATA[$tuple]]></code>
+    </ParamNameMismatch>
+  </file>
+  <file src="src/Generator/VectorGenerator.php">
+    <ParamNameMismatch>
+      <code><![CDATA[$vector]]></code>
+    </ParamNameMismatch>
+  </file>
+  <file src="src/Shrinker/Multiple.php">
+    <UndefinedVariable>
+      <code><![CDATA[$elementsAfterShrink]]></code>
+    </UndefinedVariable>
+  </file>
+  <file src="src/TestTrait.php">
+    <InternalMethod>
+      <code><![CDATA[name]]></code>
+      <code><![CDATA[toString]]></code>
+    </InternalMethod>
+  </file>
+  <file src="test/Generator/AssociativeArrayGeneratorTest.php">
+    <InvalidArgument>
+      <code><![CDATA[$array]]></code>
+    </InvalidArgument>
+    <UndefinedInterfaceMethod>
+      <code><![CDATA[$array]]></code>
+      <code><![CDATA[$array]]></code>
+      <code><![CDATA[$array]]></code>
+      <code><![CDATA[$array]]></code>
+    </UndefinedInterfaceMethod>
+  </file>
+  <file src="test/Generator/SequenceGeneratorTest.php">
+    <UndefinedInterfaceMethod>
+      <code><![CDATA[first]]></code>
+    </UndefinedInterfaceMethod>
+  </file>
+  <file src="test/Generator/SubsetGeneratorTest.php">
+    <InvalidArgument>
+      <code><![CDATA[$subsetSizes]]></code>
+    </InvalidArgument>
+  </file>
+  <file src="test/Generator/SuchThatGeneratorTest.php">
+    <UndefinedInterfaceMethod>
+      <code><![CDATA[last]]></code>
+    </UndefinedInterfaceMethod>
+  </file>
+  <file src="test/Generator/TupleGeneratorTest.php">
+    <InvalidMethodCall>
+      <code><![CDATA[generatorName]]></code>
+      <code><![CDATA[generatorName]]></code>
+      <code><![CDATA[generatorName]]></code>
+      <code><![CDATA[unbox]]></code>
+      <code><![CDATA[unbox]]></code>
+      <code><![CDATA[unbox]]></code>
+    </InvalidMethodCall>
+  </file>
+  <file src="test/Listener/LogTest.php">
+    <InternalClass>
+      <code><![CDATA[new AssertionFailedError("Failed asserting that...")]]></code>
+      <code><![CDATA[new AssertionFailedError("Failed asserting that...")]]></code>
+    </InternalClass>
+    <InternalMethod>
+      <code><![CDATA[new AssertionFailedError("Failed asserting that...")]]></code>
+      <code><![CDATA[new AssertionFailedError("Failed asserting that...")]]></code>
+    </InternalMethod>
+    <NullArgument>
+      <code><![CDATA[null]]></code>
+      <code><![CDATA[null]]></code>
+    </NullArgument>
+    <TooManyArguments>
+      <code><![CDATA[shrinking]]></code>
+    </TooManyArguments>
+  </file>
+</files>

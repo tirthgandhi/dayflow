@@ -1,0 +1,194 @@
+# Implementation Plan
+
+## Phase 2: Backend API Development
+
+- [x] 1. Set up API core infrastructure
+  - [x] 1.1 Create public/index.php entry point
+    - Set up autoloading and error handling
+    - Initialize session and CORS headers
+    - Route requests to the Router
+    - _Requirements: 9.1, 9.2_
+  - [x] 1.2 Create src/Core/Database.php singleton
+    - Implement PDO connection with configuration
+    - Add connection pooling and error handling
+    - _Requirements: 1.1_
+  - [x] 1.3 Create src/Core/Request.php wrapper
+    - Parse JSON body, query params, route params
+    - Store user context and company_id
+    - _Requirements: 2.1_
+  - [x] 1.4 Create src/Core/Response.php builder
+    - Implement success() and error() methods
+    - Add pagination helper for list responses
+    - _Requirements: 9.1, 9.2, 9.3, 9.4_
+  - [x] 1.5 Create src/Core/Router.php
+    - Implement route registration and matching
+    - Support middleware stack execution
+    - _Requirements: 1.1_
+
+- [x] 2. Implement middleware stack
+  - [x] 2.1 Create src/Middleware/CorsMiddleware.php
+    - Handle OPTIONS preflight requests
+    - Set appropriate CORS headers
+    - _Requirements: 9.1_
+  - [x] 2.2 Create src/Middleware/AuthMiddleware.php
+    - Validate session token
+    - Attach user context to request
+    - Return 401 for invalid/expired sessions
+    - _Requirements: 1.4, 1.5, 8.3_
+  - [x] 2.3 Create src/Middleware/TenantMiddleware.php
+    - Extract company_id from user session
+    - Set company context for all queries
+    - _Requirements: 2.1, 2.3, 2.4_
+  - [x] 2.4 Create src/Middleware/RBACMiddleware.php
+    - Check user permissions against required permission
+    - Return 403 for insufficient permissions
+    - _Requirements: 3.1, 3.2, 3.4, 3.5, 8.4_
+  - [ ] 2.5 Write property test for multi-tenant isolation
+    - **Property 4: Multi-Tenant Data Isolation**
+    - **Validates: Requirements 2.1, 2.3**
+  - [ ] 2.6 Write property test for role-based access
+    - **Property 6: Role-Based Access Enforcement**
+    - **Validates: Requirements 3.1, 3.2**
+
+- [x] 3. Implement authentication system
+  - [x] 3.1 Create src/Repositories/UserRepository.php
+    - Implement findByEmail(), findById() methods
+    - Add permission loading for user
+    - _Requirements: 1.1, 3.3_
+  - [x] 3.2 Create src/Services/AuthService.php
+    - Implement login(), logout(), getCurrentUser()
+    - Handle password verification with bcrypt
+    - _Requirements: 1.1, 1.2, 1.3_
+  - [x] 3.3 Create src/Controllers/AuthController.php
+    - POST /api/auth/login endpoint
+    - POST /api/auth/logout endpoint
+    - GET /api/auth/me endpoint
+    - _Requirements: 1.1, 1.2, 1.3, 1.4_
+  - [ ] 3.4 Write property test for authentication round-trip
+    - **Property 1: Authentication Round-Trip**
+    - **Validates: Requirements 1.1, 1.4**
+  - [ ] 3.5 Write property test for invalid credentials
+    - **Property 2: Invalid Credentials Rejection**
+    - **Validates: Requirements 1.2**
+  - [ ] 3.6 Write property test for session invalidation
+    - **Property 3: Session Invalidation**
+    - **Validates: Requirements 1.3, 1.5**
+
+- [ ] 4. Checkpoint - Verify authentication and middleware
+  - Ensure all tests pass, ask the user if questions arise.
+
+- [x] 5. Implement employee management API
+  - [x] 5.1 Create src/Repositories/EmployeeRepository.php
+    - Implement CRUD operations with company_id filter
+    - Add pagination support
+    - _Requirements: 4.1, 4.2, 4.3, 4.4, 4.5_
+  - [x] 5.2 Create src/Services/EmployeeService.php
+    - Business logic for employee operations
+    - Validation and error handling
+    - _Requirements: 4.1, 4.2, 4.3, 4.4, 4.5_
+  - [x] 5.3 Create src/Controllers/EmployeeController.php
+    - GET /api/employees - list with pagination
+    - GET /api/employees/{id} - single employee
+    - POST /api/employees - create
+    - PUT /api/employees/{id} - update
+    - DELETE /api/employees/{id} - soft delete
+    - GET/PUT /api/employees/me - self-service
+    - _Requirements: 4.1, 4.2, 4.3, 4.4, 4.5_
+  - [ ] 5.4 Write property test for automatic company assignment
+    - **Property 5: Automatic Company Assignment**
+    - **Validates: Requirements 2.4, 4.3**
+
+
+- [x] 6. Implement attendance management API
+  - [x] 6.1 Create src/Repositories/AttendanceRepository.php
+    - Implement CRUD with company_id and date filters
+    - Add clock-in/out specific queries
+    - _Requirements: 5.1, 5.2, 5.3, 5.4, 5.5_
+  - [x] 6.2 Create src/Services/AttendanceService.php
+    - Clock-in/out logic with duplicate check
+    - Total hours calculation
+    - _Requirements: 5.1, 5.2, 5.4_
+  - [x] 6.3 Create src/Controllers/AttendanceController.php
+    - GET /api/attendance - list with filters
+    - POST /api/attendance/clock-in
+    - POST /api/attendance/clock-out
+    - GET /api/attendance/me - own attendance
+    - _Requirements: 5.1, 5.2, 5.3, 5.5_
+  - [ ] 6.4 Write property test for attendance uniqueness
+    - **Property 7: Attendance Uniqueness**
+    - **Validates: Requirements 5.4**
+  - [ ] 6.5 Write property test for hours calculation
+    - **Property 8: Clock-Out Hours Calculation**
+    - **Validates: Requirements 5.2**
+
+- [x] 7. Implement leave management API
+  - [x] 7.1 Create src/Repositories/LeaveRepository.php
+    - Leave types and requests CRUD
+    - Balance calculation queries
+    - _Requirements: 6.1, 6.2, 6.5_
+  - [x] 7.2 Create src/Services/LeaveService.php
+    - Request creation and approval logic
+    - Balance calculation
+    - _Requirements: 6.1, 6.3, 6.4, 6.5_
+  - [x] 7.3 Create src/Controllers/LeaveController.php
+    - GET /api/leave/types
+    - GET/POST /api/leave/requests
+    - PUT /api/leave/requests/{id}/approve
+    - PUT /api/leave/requests/{id}/reject
+    - GET /api/leave/balance
+    - _Requirements: 6.1, 6.2, 6.3, 6.4, 6.5_
+  - [ ] 7.4 Write property test for leave approval audit
+    - **Property 9: Leave Approval Audit**
+    - **Validates: Requirements 6.3, 6.4**
+  - [ ] 7.5 Write property test for leave balance
+    - **Property 10: Leave Balance Calculation**
+    - **Validates: Requirements 6.5**
+
+- [x] 8. Implement payroll API
+  - [x] 8.1 Create src/Repositories/PayrollRepository.php
+    - Payroll records and salary structure queries
+    - Monthly processing queries
+    - _Requirements: 7.1, 7.2, 7.3_
+  - [x] 8.2 Create src/Services/PayrollService.php
+    - Payroll processing logic
+    - Salary calculations
+    - _Requirements: 7.3, 7.5_
+  - [x] 8.3 Create src/Controllers/PayrollController.php
+    - GET /api/payroll - list with filters
+    - POST /api/payroll/process
+    - GET /api/payroll/me - own payroll
+    - _Requirements: 7.1, 7.2, 7.3, 7.4_
+  - [ ] 8.4 Write property test for payroll calculation
+    - **Property 11: Payroll Net Calculation**
+    - **Validates: Requirements 7.5**
+
+- [x] 9. Implement validation and error handling
+  - [x] 9.1 Create src/Helpers/Validator.php
+    - Field validation rules (required, email, min, max, etc.)
+    - Custom validation messages
+    - _Requirements: 8.1_
+  - [x] 9.2 Create exception classes
+    - ValidationException, AuthException, ForbiddenException, NotFoundException
+    - _Requirements: 8.1, 8.2, 8.3, 8.4, 8.5_
+  - [ ] 9.3 Write property test for HTTP status codes
+    - **Property 12: HTTP Status Code Consistency**
+    - **Validates: Requirements 8.1, 8.2, 8.3, 8.4**
+  - [ ] 9.4 Write property test for response format
+    - **Property 13: Response Format Consistency**
+    - **Validates: Requirements 9.1, 9.2**
+  - [ ] 9.5 Write property test for pagination
+    - **Property 14: Pagination Metadata**
+    - **Validates: Requirements 9.3**
+
+- [x] 10. Create routes configuration
+  - [x] 10.1 Create config/routes.php
+    - Define all API routes with methods and permissions
+    - Map routes to controllers
+    - _Requirements: All_
+  - [ ] 10.2 Create config/permissions.php
+    - Define permission constants
+    - Map endpoints to required permissions
+    - _Requirements: 3.1, 3.2_
+
+- [ ] 11. Final Checkpoint - Verify complete API
+  - Ensure all tests pass, ask the user if questions arise.

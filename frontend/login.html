@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login - HRMS</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/variables.css">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/utilities.css">
+  <link rel="stylesheet" href="css/animations.css">
+  <style>
+    .login-page {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-dark) 100%);
+      padding: var(--spacing-md);
+    }
+    
+    .login-container {
+      width: 100%;
+      max-width: 420px;
+      margin: 0 auto;
+    }
+    
+    .login-card {
+      background: var(--color-bg-card);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-lg);
+      padding: var(--spacing-xl);
+    }
+    
+    .login-logo {
+      text-align: center;
+      margin-bottom: var(--spacing-xl);
+    }
+    
+    .logo-container {
+      width: 120px;
+      height: 120px;
+      margin: 0 auto var(--spacing-md);
+      position: relative;
+    }
+
+    .company-logo {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      border-radius: var(--radius-lg);
+    }
+
+    .logo-fallback svg {
+      width: 100%;
+      height: 100%;
+    }
+
+    .logo-skeleton {
+      width: 100%;
+      height: 100%;
+      border-radius: var(--radius-lg);
+      background: linear-gradient(90deg, var(--color-bg-page) 25%, var(--color-border-light) 50%, var(--color-bg-page) 75%);
+      background-size: 200% 100%;
+      animation: shimmer 1.5s infinite;
+    }
+
+    @keyframes shimmer {
+      0% { background-position: 200% 0; }
+      100% { background-position: -200% 0; }
+    }
+    
+    .login-logo h1 {
+      font-size: var(--font-size-2xl);
+      color: var(--color-text-heading);
+      margin-bottom: var(--spacing-xs);
+    }
+    
+    .login-logo p {
+      color: var(--color-text-muted);
+      font-size: var(--font-size-sm);
+      margin: 0;
+    }
+    
+    .login-form .form-group {
+      margin-bottom: var(--spacing-lg);
+    }
+    
+    .login-form .btn {
+      width: 100%;
+      padding: var(--spacing-md);
+      font-size: var(--font-size-base);
+      min-height: 48px;
+    }
+    
+    .login-error {
+      background: var(--color-error-light);
+      color: var(--color-error);
+      padding: var(--spacing-md);
+      border-radius: var(--radius-md);
+      margin-bottom: var(--spacing-lg);
+      font-size: var(--font-size-sm);
+      display: none;
+    }
+    
+    .login-error.show {
+      display: block;
+    }
+    
+    .login-footer {
+      text-align: center;
+      margin-top: var(--spacing-lg);
+      padding-top: var(--spacing-lg);
+      border-top: 1px solid var(--color-border);
+    }
+    
+    .login-footer p {
+      font-size: var(--font-size-sm);
+      color: var(--color-text-muted);
+      margin: 0;
+    }
+    
+    .demo-credentials {
+      background: var(--color-bg-page);
+      border-radius: var(--radius-md);
+      padding: var(--spacing-md);
+      margin-top: var(--spacing-md);
+      font-size: var(--font-size-xs);
+    }
+    
+    .demo-credentials strong {
+      color: var(--color-text-heading);
+    }
+
+    /* Password input wrapper */
+    .password-input-wrapper {
+      position: relative;
+    }
+
+    .password-input-wrapper .form-input {
+      padding-right: 48px;
+    }
+
+    .password-toggle {
+      position: absolute;
+      right: 12px;
+      top: 50%;
+      transform: translateY(-50%);
+      background: none;
+      border: none;
+      padding: 4px;
+      cursor: pointer;
+      color: var(--color-text-muted);
+      transition: color var(--transition-fast);
+    }
+
+    .password-toggle:hover {
+      color: var(--color-text-heading);
+    }
+
+    .password-toggle svg {
+      width: 20px;
+      height: 20px;
+    }
+
+    .password-toggle .hidden {
+      display: none;
+    }
+
+    /* Responsive breakpoints */
+    @media (max-width: 768px) {
+      .login-page {
+        padding: var(--spacing-sm);
+        align-items: flex-start;
+        padding-top: var(--spacing-xl);
+      }
+      
+      .login-container {
+        max-width: 100%;
+      }
+      
+      .login-card {
+        padding: var(--spacing-lg);
+        border-radius: var(--radius-md);
+      }
+      
+      .logo-container {
+        width: 100px;
+        height: 100px;
+      }
+      
+      .login-logo h1 {
+        font-size: var(--font-size-xl);
+      }
+    }
+
+    @media (max-width: 480px) {
+      .login-page {
+        padding: 0;
+        align-items: stretch;
+      }
+      
+      .login-container {
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+      }
+      
+      .login-card {
+        flex: 1;
+        border-radius: 0;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="login-page">
+    <div class="login-container">
+      <div class="login-card">
+        <div class="login-logo">
+          <div class="logo-container" id="logo-container">
+            <img 
+              src="" 
+              alt="Company Logo" 
+              class="company-logo hidden" 
+              id="company-logo"
+              onerror="this.classList.add('hidden'); document.getElementById('logo-fallback').classList.remove('hidden');"
+            >
+            <div class="logo-fallback" id="logo-fallback">
+              <svg viewBox="0 0 64 64" fill="none">
+                <rect width="64" height="64" rx="16" fill="#2FB7B2"/>
+                <text x="32" y="42" text-anchor="middle" fill="white" font-size="28" font-weight="bold" font-family="Inter, sans-serif">HR</text>
+              </svg>
+            </div>
+            <div class="logo-skeleton hidden" id="logo-skeleton"></div>
+          </div>
+          <h1>Welcome Back</h1>
+          <p>Sign in to your HRMS account</p>
+        </div>
+        
+        <div class="login-error" id="login-error"></div>
+        
+        <form class="login-form" id="login-form" aria-label="Login form">
+          <div class="form-group">
+            <label class="form-label" for="email">Email Address</label>
+            <input 
+              type="email" 
+              id="email" 
+              name="email" 
+              class="form-input" 
+              placeholder="Enter your email"
+              required
+              autocomplete="username"
+              aria-required="true"
+              aria-describedby="email-error"
+            >
+            <span class="form-error" id="email-error" role="alert" aria-live="polite"></span>
+          </div>
+          
+          <div class="form-group">
+            <label class="form-label" for="password">Password</label>
+            <div class="password-input-wrapper">
+              <input 
+                type="password" 
+                id="password" 
+                name="password" 
+                class="form-input" 
+                placeholder="Enter your password"
+                required
+                autocomplete="current-password"
+                aria-required="true"
+                aria-describedby="password-error"
+              >
+              <button 
+                type="button" 
+                class="password-toggle" 
+                id="password-toggle"
+                aria-label="Show password"
+                tabindex="-1"
+              >
+                <svg class="eye-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                  <circle cx="12" cy="12" r="3"></circle>
+                </svg>
+                <svg class="eye-off-icon hidden" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"></path>
+                  <line x1="1" y1="1" x2="23" y2="23"></line>
+                </svg>
+              </button>
+            </div>
+            <span class="form-error" id="password-error" role="alert" aria-live="polite"></span>
+          </div>
+          
+          <button type="submit" class="btn btn-primary" id="login-btn" aria-label="Sign in to your account">
+            <span class="btn-text">Sign In</span>
+            <span class="btn-loading hidden" aria-hidden="true">
+              <div class="spinner" style="width: 20px; height: 20px; border-width: 2px;"></div>
+            </span>
+          </button>
+        </form>
+        
+        <div class="login-footer">
+          <p>Don't have an account? <a href="signup.html" style="color: var(--color-secondary); text-decoration: none; font-weight: 500;">Register your company</a></p>
+          <div class="demo-credentials">
+            <strong>Demo Credentials:</strong><br>
+            Email: admin1@company1.com<br>
+            Password: password
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/api.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/components/toast.js"></script>
+  <script>
+    // Check if already logged in
+    (async () => {
+      const isAuth = await auth.init();
+      if (isAuth) {
+        window.location.href = 'index.html';
+      }
+    })();
+
+    // Password toggle functionality
+    const passwordToggle = document.getElementById('password-toggle');
+    const passwordField = document.getElementById('password');
+    
+    passwordToggle.addEventListener('click', () => {
+      const isPassword = passwordField.type === 'password';
+      passwordField.type = isPassword ? 'text' : 'password';
+      
+      // Toggle icons
+      passwordToggle.querySelector('.eye-icon').classList.toggle('hidden', !isPassword);
+      passwordToggle.querySelector('.eye-off-icon').classList.toggle('hidden', isPassword);
+      
+      // Update aria-label
+      passwordToggle.setAttribute('aria-label', isPassword ? 'Hide password' : 'Show password');
+    });
+
+    // Form elements
+    const form = document.getElementById('login-form');
+    const loginBtn = document.getElementById('login-btn');
+    const loginError = document.getElementById('login-error');
+    const emailInput = document.getElementById('email');
+    const passwordInput = document.getElementById('password');
+
+    // Email validation regex
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+    // Real-time email validation
+    emailInput.addEventListener('blur', () => {
+      validateEmail();
+    });
+
+    emailInput.addEventListener('input', () => {
+      // Clear error on input if previously had error
+      if (emailInput.classList.contains('error')) {
+        validateEmail();
+      }
+    });
+
+    // Real-time password validation
+    passwordInput.addEventListener('blur', () => {
+      validatePassword();
+    });
+
+    passwordInput.addEventListener('input', () => {
+      // Clear error on input if previously had error
+      if (passwordInput.classList.contains('error')) {
+        validatePassword();
+      }
+    });
+
+    function validateEmail() {
+      const email = emailInput.value.trim();
+      const errorEl = document.getElementById('email-error');
+      
+      if (!email) {
+        showFieldError(emailInput, errorEl, 'Email is required');
+        return false;
+      }
+      
+      if (!emailRegex.test(email)) {
+        showFieldError(emailInput, errorEl, 'Please enter a valid email address');
+        return false;
+      }
+      
+      clearFieldError(emailInput, errorEl);
+      return true;
+    }
+
+    function validatePassword() {
+      const password = passwordInput.value;
+      const errorEl = document.getElementById('password-error');
+      
+      if (!password) {
+        showFieldError(passwordInput, errorEl, 'Password is required');
+        return false;
+      }
+      
+      clearFieldError(passwordInput, errorEl);
+      return true;
+    }
+
+    function showFieldError(input, errorEl, message) {
+      input.classList.add('error');
+      errorEl.textContent = message;
+    }
+
+    function clearFieldError(input, errorEl) {
+      input.classList.remove('error');
+      errorEl.textContent = '';
+    }
+
+    function clearAllErrors() {
+      loginError.classList.remove('show');
+      clearFieldError(emailInput, document.getElementById('email-error'));
+      clearFieldError(passwordInput, document.getElementById('password-error'));
+    }
+
+    // Form submission
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      
+      // Clear previous errors
+      clearAllErrors();
+
+      // Validate all fields
+      const isEmailValid = validateEmail();
+      const isPasswordValid = validatePassword();
+
+      if (!isEmailValid || !isPasswordValid) {
+        return;
+      }
+
+      const email = emailInput.value.trim();
+      const password = passwordInput.value;
+
+      // Show loading
+      loginBtn.disabled = true;
+      loginBtn.querySelector('.btn-text').classList.add('hidden');
+      loginBtn.querySelector('.btn-loading').classList.remove('hidden');
+
+      try {
+        await auth.login(email, password);
+        toast.success('Login successful! Redirecting...');
+        setTimeout(() => {
+          window.location.href = 'index.html';
+        }, 500);
+      } catch (error) {
+        loginError.textContent = error.message || 'Invalid email or password';
+        loginError.classList.add('show');
+        
+        // Reset button
+        loginBtn.disabled = false;
+        loginBtn.querySelector('.btn-text').classList.remove('hidden');
+        loginBtn.querySelector('.btn-loading').classList.add('hidden');
+      }
+    });
+  </script>
+</body>
+</html>

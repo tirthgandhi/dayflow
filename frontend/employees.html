@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Employees - HRMS</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/variables.css">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/layout.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/utilities.css">
+  <link rel="stylesheet" href="css/animations.css">
+</head>
+<body>
+  <div class="app">
+    <div id="sidebar-container"></div>
+    
+    <div class="main-wrapper">
+      <div id="header-container"></div>
+      
+      <main class="main-content">
+        <div class="table-container">
+          <div class="table-header">
+            <div class="search-input">
+              <svg class="search-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="11" cy="11" r="8"></circle>
+                <line x1="21" x2="16.65" y1="21" y2="16.65"></line>
+              </svg>
+              <input type="text" class="form-input" id="search-input" placeholder="Search employees...">
+            </div>
+            <div class="table-filters">
+              <select class="form-select" id="status-filter" style="width: auto;">
+                <option value="">All Status</option>
+                <option value="active">Active</option>
+                <option value="inactive">Inactive</option>
+              </select>
+              <select class="form-select" id="department-filter" style="width: auto;">
+                <option value="">All Departments</option>
+              </select>
+              <button class="btn btn-primary" id="add-employee-btn">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <line x1="12" x2="12" y1="5" y2="19"></line>
+                  <line x1="5" x2="19" y1="12" y2="12"></line>
+                </svg>
+                Add Employee
+              </button>
+            </div>
+          </div>
+          
+          <div class="table-wrapper">
+            <table class="data-table" id="employees-table">
+              <thead>
+                <tr>
+                  <th>Employee</th>
+                  <th>Department</th>
+                  <th>Position</th>
+                  <th>Email</th>
+                  <th>Status</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody id="employees-tbody">
+                <tr>
+                  <td colspan="6" class="text-center p-lg">
+                    <div class="spinner"></div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          
+          <div class="table-pagination">
+            <span class="pagination-info" id="pagination-info">Showing 0 of 0</span>
+            <div class="pagination-controls">
+              <select class="form-select" id="page-size" style="width: auto;">
+                <option value="10">10 per page</option>
+                <option value="20" selected>20 per page</option>
+                <option value="50">50 per page</option>
+              </select>
+              <button class="btn btn-outline btn-sm" id="prev-btn" disabled>Previous</button>
+              <button class="btn btn-outline btn-sm" id="next-btn" disabled>Next</button>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <!-- Employee Modal -->
+  <div class="modal-overlay" id="employee-modal">
+    <div class="modal" style="max-width: 600px;">
+      <div class="modal-header">
+        <h3 class="modal-title" id="modal-title">Add Employee</h3>
+        <button class="modal-close" id="modal-close">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="18" y1="6" x2="6" y2="18"></line>
+            <line x1="6" y1="6" x2="18" y2="18"></line>
+          </svg>
+        </button>
+      </div>
+      <form id="employee-form">
+        <div class="modal-body">
+          <input type="hidden" id="employee-id">
+          <div class="content-grid-2">
+            <div class="form-group">
+              <label class="form-label" for="first_name">First Name *</label>
+              <input type="text" class="form-input" id="first_name" name="first_name" required>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="last_name">Last Name *</label>
+              <input type="text" class="form-input" id="last_name" name="last_name" required>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="email">Email</label>
+            <input type="email" class="form-input" id="email" name="email">
+            <span class="form-hint">Leave empty if employee doesn't need login access</span>
+          </div>
+          <div class="content-grid-2">
+            <div class="form-group">
+              <label class="form-label" for="department">Department</label>
+              <input type="text" class="form-input" id="department" name="department">
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="position">Position</label>
+              <input type="text" class="form-input" id="position" name="position">
+            </div>
+          </div>
+          <div class="content-grid-2">
+            <div class="form-group">
+              <label class="form-label" for="phone">Phone</label>
+              <input type="tel" class="form-input" id="phone" name="phone">
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="hire_date">Hire Date</label>
+              <input type="date" class="form-input" id="hire_date" name="hire_date">
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="address">Address</label>
+            <textarea class="form-textarea" id="address" name="address" rows="2"></textarea>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-outline" id="modal-cancel">Cancel</button>
+          <button type="submit" class="btn btn-primary" id="modal-submit">Save Employee</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <div id="toast-container" class="toast-container"></div>
+
+  <script src="js/api.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/components/toast.js"></script>
+  <script src="js/components/sidebar.js"></script>
+  <script src="js/components/header.js"></script>
+  <script src="js/components/loader.js"></script>
+  <script src="js/pages/employees.js"></script>
+</body>
+</html>

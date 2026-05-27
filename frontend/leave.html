@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Leave Management - HRMS</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/variables.css">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/layout.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/utilities.css">
+  <link rel="stylesheet" href="css/animations.css">
+</head>
+<body>
+  <div class="app">
+    <div id="sidebar-container"></div>
+    
+    <div class="main-wrapper">
+      <div id="header-container"></div>
+      
+      <main class="main-content">
+        <!-- Pending Requests Section -->
+        <div class="card mb-lg" id="pending-section">
+          <div class="card-header">
+            <h3 class="card-title">Pending Requests</h3>
+            <span class="badge badge-warning" id="pending-count">0</span>
+          </div>
+          <div class="card-body" id="pending-requests">
+            <div class="text-center p-lg">
+              <div class="spinner"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- All Requests Table -->
+        <div class="table-container">
+          <div class="table-header">
+            <h3 class="card-title">All Leave Requests</h3>
+            <div class="table-filters">
+              <select class="form-select" id="status-filter" style="width: auto;">
+                <option value="">All Status</option>
+                <option value="pending">Pending</option>
+                <option value="approved">Approved</option>
+                <option value="rejected">Rejected</option>
+              </select>
+              <select class="form-select" id="type-filter" style="width: auto;">
+                <option value="">All Types</option>
+              </select>
+            </div>
+          </div>
+          
+          <div class="table-wrapper">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>Employee</th>
+                  <th>Leave Type</th>
+                  <th>Start Date</th>
+                  <th>End Date</th>
+                  <th>Days</th>
+                  <th>Status</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody id="requests-tbody">
+                <tr>
+                  <td colspan="7" class="text-center p-lg">
+                    <div class="spinner"></div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          
+          <div class="table-pagination">
+            <span class="pagination-info" id="pagination-info">Showing 0 of 0</span>
+            <div class="pagination-controls">
+              <button class="btn btn-outline btn-sm" id="prev-btn" disabled>Previous</button>
+              <button class="btn btn-outline btn-sm" id="next-btn" disabled>Next</button>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <!-- Confirmation Modal -->
+  <div class="modal-overlay" id="confirm-modal">
+    <div class="modal" style="max-width: 400px;">
+      <div class="modal-header">
+        <h3 class="modal-title" id="confirm-title">Confirm Action</h3>
+        <button class="modal-close" onclick="closeConfirmModal()">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="18" y1="6" x2="6" y2="18"></line>
+            <line x1="6" y1="6" x2="18" y2="18"></line>
+          </svg>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p id="confirm-message">Are you sure you want to proceed?</p>
+        <div class="form-group mt-md" id="reject-reason-group" style="display: none;">
+          <label class="form-label" for="reject-reason">Reason for Rejection</label>
+          <textarea class="form-textarea" id="reject-reason" rows="2" placeholder="Optional"></textarea>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-outline" onclick="closeConfirmModal()">Cancel</button>
+        <button class="btn" id="confirm-btn">Confirm</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="toast-container" class="toast-container"></div>
+
+  <script src="js/api.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/components/toast.js"></script>
+  <script src="js/components/sidebar.js"></script>
+  <script src="js/components/header.js"></script>
+  <script src="js/pages/leave.js"></script>
+</body>
+</html>

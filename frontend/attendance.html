@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Attendance - HRMS</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/variables.css">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/layout.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/utilities.css">
+  <link rel="stylesheet" href="css/animations.css">
+</head>
+<body>
+  <div class="app">
+    <div id="sidebar-container"></div>
+    
+    <div class="main-wrapper">
+      <div id="header-container"></div>
+      
+      <main class="main-content">
+        <div class="table-container">
+          <div class="table-header">
+            <div class="flex items-center gap-md">
+              <div class="form-group m-0">
+                <input type="date" class="form-input" id="date-from" style="width: auto;">
+              </div>
+              <span class="text-muted">to</span>
+              <div class="form-group m-0">
+                <input type="date" class="form-input" id="date-to" style="width: auto;">
+              </div>
+            </div>
+            <div class="table-filters">
+              <select class="form-select" id="status-filter" style="width: auto;">
+                <option value="">All Status</option>
+                <option value="present">Present</option>
+                <option value="absent">Absent</option>
+                <option value="late">Late</option>
+              </select>
+              <button class="btn btn-primary" id="add-attendance-btn">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <line x1="12" x2="12" y1="5" y2="19"></line>
+                  <line x1="5" x2="19" y1="12" y2="12"></line>
+                </svg>
+                Add Record
+              </button>
+            </div>
+          </div>
+          
+          <div class="table-wrapper">
+            <table class="data-table" id="attendance-table">
+              <thead>
+                <tr>
+                  <th>Employee</th>
+                  <th>Date</th>
+                  <th>Clock In</th>
+                  <th>Clock Out</th>
+                  <th>Total Hours</th>
+                  <th>Status</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody id="attendance-tbody">
+                <tr>
+                  <td colspan="7" class="text-center p-lg">
+                    <div class="spinner"></div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          
+          <div class="table-pagination">
+            <span class="pagination-info" id="pagination-info">Showing 0 of 0</span>
+            <div class="pagination-controls">
+              <button class="btn btn-outline btn-sm" id="prev-btn" disabled>Previous</button>
+              <button class="btn btn-outline btn-sm" id="next-btn" disabled>Next</button>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <!-- Attendance Modal -->
+  <div class="modal-overlay" id="attendance-modal">
+    <div class="modal">
+      <div class="modal-header">
+        <h3 class="modal-title">Add Attendance Record</h3>
+        <button class="modal-close" onclick="closeModal()">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="18" y1="6" x2="6" y2="18"></line>
+            <line x1="6" y1="6" x2="18" y2="18"></line>
+          </svg>
+        </button>
+      </div>
+      <form id="attendance-form">
+        <div class="modal-body">
+          <div class="form-group">
+            <label class="form-label" for="employee_id">Employee *</label>
+            <select class="form-select" id="employee_id" name="employee_id" required>
+              <option value="">Select Employee</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="date">Date *</label>
+            <input type="date" class="form-input" id="date" name="date" required>
+          </div>
+          <div class="content-grid-2">
+            <div class="form-group">
+              <label class="form-label" for="clock_in_time">Clock In</label>
+              <input type="time" class="form-input" id="clock_in_time" name="clock_in_time">
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="clock_out_time">Clock Out</label>
+              <input type="time" class="form-input" id="clock_out_time" name="clock_out_time">
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="status">Status *</label>
+            <select class="form-select" id="status" name="status" required>
+              <option value="present">Present</option>
+              <option value="absent">Absent</option>
+              <option value="late">Late</option>
+              <option value="half_day">Half Day</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="notes">Notes</label>
+            <textarea class="form-textarea" id="notes" name="notes" rows="2"></textarea>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-outline" onclick="closeModal()">Cancel</button>
+          <button type="submit" class="btn btn-primary">Save Record</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <div id="toast-container" class="toast-container"></div>
+
+  <script src="js/api.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/components/toast.js"></script>
+  <script src="js/components/sidebar.js"></script>
+  <script src="js/components/header.js"></script>
+  <script src="js/pages/attendance.js"></script>
+</body>
+</html>

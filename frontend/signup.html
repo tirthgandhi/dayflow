@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Register Company - HRMS</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/variables.css">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/utilities.css">
+  <link rel="stylesheet" href="css/animations.css">
+  <style>
+    .signup-page {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-dark) 100%);
+      padding: var(--spacing-lg);
+    }
+    
+    .signup-container {
+      width: 100%;
+      max-width: 500px;
+    }
+    
+    .signup-card {
+      background: var(--color-bg-card);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-lg);
+      padding: var(--spacing-xl);
+    }
+    
+    .signup-logo {
+      text-align: center;
+      margin-bottom: var(--spacing-xl);
+    }
+    
+    .signup-logo svg {
+      width: 64px;
+      height: 64px;
+      margin-bottom: var(--spacing-md);
+    }
+    
+    .signup-logo h1 {
+      font-size: var(--font-size-2xl);
+      color: var(--color-text-heading);
+      margin-bottom: var(--spacing-xs);
+    }
+    
+    .signup-logo p {
+      color: var(--color-text-muted);
+      font-size: var(--font-size-sm);
+      margin: 0;
+    }
+    
+    .signup-form .form-group {
+      margin-bottom: var(--spacing-md);
+    }
+    
+    .signup-form .btn {
+      width: 100%;
+      padding: var(--spacing-md);
+      font-size: var(--font-size-base);
+    }
+    
+    .signup-error {
+      background: var(--color-error-light);
+      color: var(--color-error);
+      padding: var(--spacing-md);
+      border-radius: var(--radius-md);
+      margin-bottom: var(--spacing-lg);
+      font-size: var(--font-size-sm);
+      display: none;
+    }
+    
+    .signup-error.show {
+      display: block;
+    }
+    
+    .signup-success {
+      background: var(--color-success-light);
+      color: var(--color-success);
+      padding: var(--spacing-md);
+      border-radius: var(--radius-md);
+      margin-bottom: var(--spacing-lg);
+      font-size: var(--font-size-sm);
+      display: none;
+    }
+    
+    .signup-success.show {
+      display: block;
+    }
+    
+    .signup-footer {
+      text-align: center;
+      margin-top: var(--spacing-lg);
+      padding-top: var(--spacing-lg);
+      border-top: 1px solid var(--color-border);
+    }
+    
+    .signup-footer p {
+      font-size: var(--font-size-sm);
+      color: var(--color-text-muted);
+      margin: 0;
+    }
+    
+    .signup-footer a {
+      color: var(--color-secondary);
+      text-decoration: none;
+      font-weight: var(--font-weight-medium);
+    }
+    
+    .signup-footer a:hover {
+      text-decoration: underline;
+    }
+    
+    .logo-upload {
+      display: flex;
+      align-items: center;
+      gap: var(--spacing-md);
+    }
+    
+    .logo-preview {
+      width: 64px;
+      height: 64px;
+      border-radius: var(--radius-md);
+      background: var(--color-bg-page);
+      border: 2px dashed var(--color-border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      flex-shrink: 0;
+    }
+    
+    .logo-preview img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    
+    .logo-preview svg {
+      width: 24px;
+      height: 24px;
+      color: var(--color-text-muted);
+    }
+    
+    .logo-upload-input {
+      flex: 1;
+    }
+    
+    .section-title {
+      font-size: var(--font-size-sm);
+      font-weight: var(--font-weight-semibold);
+      color: var(--color-text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: var(--spacing-md);
+      margin-top: var(--spacing-lg);
+    }
+    
+    .section-title:first-of-type {
+      margin-top: 0;
+    }
+  </style>
+</head>
+<body>
+  <div class="signup-page">
+    <div class="signup-container">
+      <div class="signup-card">
+        <div class="signup-logo">
+          <svg viewBox="0 0 64 64" fill="none">
+            <rect width="64" height="64" rx="16" fill="#2FB7B2"/>
+            <text x="32" y="42" text-anchor="middle" fill="white" font-size="28" font-weight="bold" font-family="Inter, sans-serif">HR</text>
+          </svg>
+          <h1>Register Your Company</h1>
+          <p>Create your HRMS account to get started</p>
+        </div>
+        
+        <div class="signup-error" id="signup-error"></div>
+        <div class="signup-success" id="signup-success"></div>
+        
+        <form class="signup-form" id="signup-form">
+          <div class="section-title">Company Information</div>
+          
+          <div class="form-group">
+            <label class="form-label" for="company_name">Company Name *</label>
+            <input 
+              type="text" 
+              id="company_name" 
+              name="company_name" 
+              class="form-input" 
+              placeholder="Enter company name"
+              required
+            >
+            <span class="form-error" id="company_name-error"></span>
+          </div>
+          
+          <div class="form-group">
+            <label class="form-label" for="company_address">Company Address</label>
+            <input 
+              type="text" 
+              id="company_address" 
+              name="company_address" 
+              class="form-input" 
+              placeholder="Enter company address (optional)"
+            >
+          </div>
+          
+          <div class="form-group">
+            <label class="form-label" for="company_phone">Company Phone</label>
+            <input 
+              type="tel" 
+              id="company_phone" 
+              name="company_phone" 
+              class="form-input" 
+              placeholder="Enter company phone (optional)"
+            >
+          </div>
+          
+          <div class="form-group">
+            <label class="form-label">Company Logo (optional)</label>
+            <div class="logo-upload">
+              <div class="logo-preview" id="logo-preview">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+                  <circle cx="8.5" cy="8.5" r="1.5"></circle>
+                  <polyline points="21 15 16 10 5 21"></polyline>
+                </svg>
+              </div>
+              <div class="logo-upload-input">
+                <input 
+                  type="file" 
+                  id="company_logo" 
+                  name="company_logo" 
+                  class="form-input"
+                  accept="image/jpeg,image/png,image/gif"
+                >
+                <span class="form-hint">JPG, PNG or GIF. Max 2MB.</span>
+              </div>
+            </div>
+          </div>
+          
+          <div class="section-title">Admin Account</div>
+          
+          <div class="form-group">
+            <label class="form-label" for="admin_name">Your Name *</label>
+            <input 
+              type="text" 
+              id="admin_name" 
+              name="admin_name" 
+              class="form-input" 
+              placeholder="Enter your full name"
+              required
+            >
+            <span class="form-error" id="admin_name-error"></span>
+          </div>
+          
+          <div class="form-group">
+            <label class="form-label" for="email">Email Address *</label>
+            <input 
+              type="email" 
+              id="email" 
+              name="email" 
+              class="form-input" 
+              placeholder="Enter your email"
+              required
+              autocomplete="email"
+            >
+            <span class="form-error" id="email-error"></span>
+          </div>
+          
+          <div class="form-group">
+            <label class="form-label" for="password">Password *</label>
+            <input 
+              type="password" 
+              id="password" 
+              name="password" 
+              class="form-input" 
+              placeholder="Create a password (min 6 characters)"
+              required
+              minlength="6"
+              autocomplete="new-password"
+            >
+            <span class="form-error" id="password-error"></span>
+          </div>
+          
+          <div class="form-group">
+            <label class="form-label" for="confirm_password">Confirm Password *</label>
+            <input 
+              type="password" 
+              id="confirm_password" 
+              name="confirm_password" 
+              class="form-input" 
+              placeholder="Confirm your password"
+              required
+              autocomplete="new-password"
+            >
+            <span class="form-error" id="confirm_password-error"></span>
+          </div>
+          
+          <button type="submit" class="btn btn-primary" id="signup-btn">
+            <span class="btn-text">Create Account</span>
+            <span class="btn-loading hidden">
+              <div class="spinner" style="width: 20px; height: 20px; border-width: 2px;"></div>
+            </span>
+          </button>
+        </form>
+        
+        <div class="signup-footer">
+          <p>Already have an account? <a href="login.html">Sign in</a></p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/api.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/components/toast.js"></script>
+  <script src="js/pages/signup.js"></script>
+</body>
+</html>

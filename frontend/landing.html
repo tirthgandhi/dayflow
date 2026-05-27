@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dayflow - Modern HR Management System</title>
+  <meta name="description" content="Streamline your HR operations with Dayflow. Employee management, attendance tracking, leave management, and payroll processing all in one place.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/variables.css">
+  <link rel="stylesheet" href="css/landing.css">
+</head>
+<body>
+  <!-- Navigation -->
+  <nav class="navbar">
+    <div class="container navbar-content">
+      <a href="#" class="logo">
+        <div class="logo-icon">
+          <svg width="32" height="32" viewBox="0 0 32 32" fill="currentColor">
+            <rect width="32" height="32" rx="8" fill="#2FB7B2"/>
+            <text x="16" y="22" text-anchor="middle" fill="white" font-size="14" font-weight="bold">HR</text>
+          </svg>
+        </div>
+        <span class="logo-text">Dayflow</span>
+      </a>
+      <div class="nav-links">
+        <a href="#features">Features</a>
+        <a href="#how-it-works">How It Works</a>
+        <a href="#pricing">Pricing</a>
+      </div>
+      <div class="nav-actions">
+        <a href="login.html" class="btn btn-ghost">Login</a>
+        <a href="signup.html" class="btn btn-primary">Get Started Free</a>
+      </div>
+      <button class="mobile-menu-btn" id="mobile-menu-btn">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <line x1="3" y1="12" x2="21" y2="12"></line>
+          <line x1="3" y1="6" x2="21" y2="6"></line>
+          <line x1="3" y1="18" x2="21" y2="18"></line>
+        </svg>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="container">
+      <div class="hero-content">
+        <div class="hero-badge">🚀 Trusted by 500+ Companies</div>
+        <h1 class="hero-title">
+          Simplify Your <span class="gradient-text">HR Operations</span> with Dayflow
+        </h1>
+        <p class="hero-subtitle">
+          The all-in-one HR management platform that helps you manage employees, track attendance, 
+          process payroll, and handle leave requests effortlessly.
+        </p>
+        <div class="hero-actions">
+          <a href="signup.html" class="btn btn-primary btn-lg">
+            Start Free Trial
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <line x1="5" y1="12" x2="19" y2="12"></line>
+              <polyline points="12 5 19 12 12 19"></polyline>
+            </svg>
+          </a>
+          <a href="#features" class="btn btn-outline btn-lg">
+            See Features
+          </a>
+        </div>
+        <div class="hero-stats">
+          <div class="stat">
+            <span class="stat-value">10K+</span>
+            <span class="stat-label">Active Users</span>
+          </div>
+          <div class="stat">
+            <span class="stat-value">500+</span>
+            <span class="stat-label">Companies</span>
+          </div>
+          <div class="stat">
+            <span class="stat-value">99.9%</span>
+            <span class="stat-label">Uptime</span>
+          </div>
+        </div>
+      </div>
+      <div class="hero-image">
+        <div class="dashboard-preview">
+          <div class="preview-header">
+            <div class="preview-dots">
+              <span></span><span></span><span></span>
+            </div>
+            <span class="preview-title">Dashboard</span>
+          </div>
+          <div class="preview-content">
+            <div class="preview-sidebar"></div>
+            <div class="preview-main">
+              <div class="preview-cards">
+                <div class="preview-card card-1"></div>
+                <div class="preview-card card-2"></div>
+                <div class="preview-card card-3"></div>
+                <div class="preview-card card-4"></div>
+              </div>
+              <div class="preview-table"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Features Section -->
+  <section class="features" id="features">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-badge">Features</span>
+        <h2 class="section-title">Everything You Need to Manage HR</h2>
+        <p class="section-subtitle">Powerful features designed to streamline your HR processes and boost productivity.</p>
+      </div>
+      <div class="features-grid">
+        <div class="feature-card">
+          <div class="feature-icon" style="background: rgba(47, 183, 178, 0.1); color: #2FB7B2;">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path>
+              <circle cx="9" cy="7" r="4"></circle>
+              <path d="M22 21v-2a4 4 0 0 0-3-3.87"></path>
+              <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+            </svg>
+          </div>
+          <h3 class="feature-title">Employee Management</h3>
+          <p class="feature-desc">Centralize all employee data, manage profiles, departments, and organizational structure with ease.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon" style="background: rgba(34, 197, 94, 0.1); color: #22C55E;">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="12" cy="12" r="10"></circle>
+              <polyline points="12 6 12 12 16 14"></polyline>
+            </svg>
+          </div>
+          <h3 class="feature-title">Attendance Tracking</h3>
+          <p class="feature-desc">Track clock-in/out times, monitor attendance patterns, and generate detailed reports automatically.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon" style="background: rgba(245, 158, 11, 0.1); color: #F59E0B;">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <rect width="18" height="18" x="3" y="4" rx="2" ry="2"></rect>
+              <line x1="16" x2="16" y1="2" y2="6"></line>
+              <line x1="8" x2="8" y1="2" y2="6"></line>
+              <line x1="3" x2="21" y1="10" y2="10"></line>
+            </svg>
+          </div>
+          <h3 class="feature-title">Leave Management</h3>
+          <p class="feature-desc">Streamline leave requests, approvals, and balance tracking with an intuitive workflow system.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon" style="background: rgba(31, 58, 95, 0.1); color: #1F3A5F;">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <text x="12" y="16" text-anchor="middle" font-size="14" font-weight="bold" fill="currentColor" stroke="none">₹</text>
+            </svg>
+          </div>
+          <h3 class="feature-title">Payroll Processing</h3>
+          <p class="feature-desc">Automate salary calculations, deductions, and generate payslips with just a few clicks.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon" style="background: rgba(59, 130, 246, 0.1); color: #3B82F6;">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+              <polyline points="14 2 14 8 20 8"></polyline>
+              <line x1="16" x2="8" y1="13" y2="13"></line>
+              <line x1="16" x2="8" y1="17" y2="17"></line>
+            </svg>
+          </div>
+          <h3 class="feature-title">Reports & Analytics</h3>
+          <p class="feature-desc">Generate comprehensive CSV and PDF reports for employees, attendance, leave, and payroll.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon" style="background: rgba(239, 68, 68, 0.1); color: #EF4444;">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+              <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+            </svg>
+          </div>
+          <h3 class="feature-title">Role-Based Access</h3>
+          <p class="feature-desc">Secure your data with granular permissions for Admin, HR, and Employee roles.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- How It Works Section -->
+  <section class="how-it-works" id="how-it-works">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-badge">How It Works</span>
+        <h2 class="section-title">Get Started in Minutes</h2>
+        <p class="section-subtitle">Simple setup process to get your HR system up and running quickly.</p>
+      </div>
+      <div class="steps">
+        <div class="step">
+          <div class="step-number">1</div>
+          <div class="step-content">
+            <h3>Register Your Company</h3>
+            <p>Sign up with your company details and create your admin account in seconds.</p>
+          </div>
+        </div>
+        <div class="step-connector"></div>
+        <div class="step">
+          <div class="step-number">2</div>
+          <div class="step-content">
+            <h3>Add Your Team</h3>
+            <p>Import or add employees, set up departments, and assign roles.</p>
+          </div>
+        </div>
+        <div class="step-connector"></div>
+        <div class="step">
+          <div class="step-number">3</div>
+          <div class="step-content">
+            <h3>Start Managing</h3>
+            <p>Track attendance, manage leaves, process payroll, and generate reports.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Pricing Section -->
+  <section class="pricing" id="pricing">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-badge">Pricing</span>
+        <h2 class="section-title">Simple, Transparent Pricing</h2>
+        <p class="section-subtitle">Choose the plan that fits your organization's needs.</p>
+      </div>
+      <div class="pricing-grid">
+        <div class="pricing-card">
+          <div class="pricing-header">
+            <h3 class="pricing-name">Starter</h3>
+            <div class="pricing-price">
+              <span class="currency">₹</span>
+              <span class="amount">0</span>
+              <span class="period">/month</span>
+            </div>
+            <p class="pricing-desc">Perfect for small teams getting started</p>
+          </div>
+          <ul class="pricing-features">
+            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg> Up to 10 employees</li>
+            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg> Attendance tracking</li>
+            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg> Leave management</li>
+            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg> Basic reports</li>
+          </ul>
+          <a href="signup.html" class="btn btn-outline btn-block">Get Started</a>
+        </div>
+        <div class="pricing-card featured">
+          <div class="pricing-badge">Most Popular</div>
+          <div class="pricing-header">
+            <h3 class="pricing-name">Professional</h3>
+            <div class="pricing-price">
+              <span class="currency">₹</span>
+              <span class="amount">999</span>
+              <span class="period">/month</span>
+            </div>
+            <p class="pricing-desc">For growing businesses</p>
+          </div>
+          <ul class="pricing-features">
+            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg> Up to 100 employees</li>
+            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg> Everything in Starter</li>
+            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg> Payroll processing</li>
+            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg> Advanced reports (CSV/PDF)</li>
+            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg> Priority support</li>
+          </ul>
+          <a href="signup.html" class="btn btn-primary btn-block">Start Free Trial</a>
+        </div>
+        <div class="pricing-card">
+          <div class="pricing-header">
+            <h3 class="pricing-name">Enterprise</h3>
+            <div class="pricing-price">
+              <span class="currency">₹</span>
+              <span class="amount">2999</span>
+              <span class="period">/month</span>
+            </div>
+            <p class="pricing-desc">For large organizations</p>
+          </div>
+          <ul class="pricing-features">
+            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg> Unlimited employees</li>
+            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg> Everything in Professional</li>
+            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg> Custom integrations</li>
+            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg> Dedicated support</li>
+            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg> SLA guarantee</li>
+          </ul>
+          <a href="signup.html" class="btn btn-outline btn-block">Contact Sales</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section class="cta">
+    <div class="container">
+      <div class="cta-content">
+        <h2>Ready to Transform Your HR Operations?</h2>
+        <p>Join thousands of companies already using Dayflow to streamline their HR processes.</p>
+        <div class="cta-actions">
+          <a href="signup.html" class="btn btn-white btn-lg">
+            Get Started Free
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <line x1="5" y1="12" x2="19" y2="12"></line>
+              <polyline points="12 5 19 12 12 19"></polyline>
+            </svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="#" class="logo">
+            <div class="logo-icon">
+              <svg width="32" height="32" viewBox="0 0 32 32" fill="currentColor">
+                <rect width="32" height="32" rx="8" fill="#2FB7B2"/>
+                <text x="16" y="22" text-anchor="middle" fill="white" font-size="14" font-weight="bold">HR</text>
+              </svg>
+            </div>
+            <span class="logo-text">Dayflow</span>
+          </a>
+          <p>Modern HR management system for businesses of all sizes.</p>
+        </div>
+        <div class="footer-links">
+          <h4>Product</h4>
+          <a href="#features">Features</a>
+          <a href="#pricing">Pricing</a>
+          <a href="#how-it-works">How It Works</a>
+        </div>
+        <div class="footer-links">
+          <h4>Company</h4>
+          <a href="#">About Us</a>
+          <a href="#">Contact</a>
+          <a href="#">Careers</a>
+        </div>
+        <div class="footer-links">
+          <h4>Legal</h4>
+          <a href="#">Privacy Policy</a>
+          <a href="#">Terms of Service</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2026 Dayflow. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Mobile Menu -->
+  <div class="mobile-menu" id="mobile-menu">
+    <div class="mobile-menu-content">
+      <a href="#features">Features</a>
+      <a href="#how-it-works">How It Works</a>
+      <a href="#pricing">Pricing</a>
+      <hr>
+      <a href="login.html" class="btn btn-outline btn-block">Login</a>
+      <a href="signup.html" class="btn btn-primary btn-block">Get Started Free</a>
+    </div>
+  </div>
+
+  <script>
+    // Mobile menu toggle
+    const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+    const mobileMenu = document.getElementById('mobile-menu');
+    
+    mobileMenuBtn.addEventListener('click', () => {
+      mobileMenu.classList.toggle('open');
+      document.body.classList.toggle('menu-open');
+    });
+
+    // Close mobile menu when clicking a link
+    mobileMenu.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        mobileMenu.classList.remove('open');
+        document.body.classList.remove('menu-open');
+      });
+    });
+
+    // Smooth scroll for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      });
+    });
+
+    // Navbar scroll effect
+    const navbar = document.querySelector('.navbar');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 50) {
+        navbar.classList.add('scrolled');
+      } else {
+        navbar.classList.remove('scrolled');
+      }
+    });
+  </script>
+</body>
+</html>
